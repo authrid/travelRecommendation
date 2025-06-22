@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error loading data:', error));
 });
-
 function renderDestinations(dataList, containerId, isCountry = false) {
   const container = document.getElementById(containerId);
   if (isCountry) {
@@ -23,7 +22,6 @@ function renderDestinations(dataList, containerId, isCountry = false) {
     });
   }
 }
-
 function createCard({ name, imageUrl, description }) {
   const card = document.createElement('div');
   card.className = 'card';
@@ -36,11 +34,9 @@ function createCard({ name, imageUrl, description }) {
   `;
   return card;
 }
-
 function handleSearch() {
   const keyword = document.getElementById('searchInput').value.toLowerCase();
   const cards = document.querySelectorAll('.card');
-
   cards.forEach(card => {
     const text = card.innerText.toLowerCase();
     if (text.includes(keyword)) {
@@ -50,9 +46,22 @@ function handleSearch() {
     }
   });
 }
-
 function resetSearch() {
   document.getElementById('searchInput').value = '';
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => card.style.display = '');
+}
+
+function submitForm(event) {
+  event.preventDefault(); // Prevent actual submission
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  // Simulasikan pengiriman
+  document.getElementById("form-status").innerText = `Thank you, ${name}! We have received your message.`;
+  
+  // Reset form
+  event.target.reset();
+  return false;
 }
